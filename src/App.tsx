@@ -1,24 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Container from "./components/Container";
+import Display from "./components/Display";
+import ButtonContainer from "./components/ButtonContainer";
+import Button from "./components/Button";
+
+const buttonValues = [
+  "C",
+  "+-",
+  "%",
+  "/",
+  7,
+  8,
+  9,
+  "X",
+  4,
+  5,
+  6,
+  "-",
+  1,
+  2,
+  3,
+  "+",
+  0,
+  ".",
+  "=",
+];
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Container>
+        <Display value={0} />
+        <ButtonContainer>
+          {buttonValues.map((btn, index) => {
+            return (
+              <Button
+                key={index}
+                value={btn}
+                onClick={() => console.log({ btn })}
+              />
+            );
+          })}
+        </ButtonContainer>
+      </Container>
     </div>
   );
 }
