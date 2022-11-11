@@ -4,11 +4,15 @@ import styled from "styled-components";
 interface Props {
   operation: string;
   onClick: () => void;
+  selected?: string;
 }
 
 const StyledOperationButton = styled.button`
-  background-color: orange;
-  color: white;
+  background-color: ${(props: Props) =>
+    props.selected === props.operation ? "white" : "orange"};
+  color: ${(props: Props) =>
+    props.selected === props.operation ? "orange" : "white"};
+  font-size: 1.5em;
   font-weight: bold;
   cursor: pointer;
   border-radius: 10px;
@@ -16,9 +20,13 @@ const StyledOperationButton = styled.button`
   outline: none;
 `;
 
-const OperationButton = ({ operation, onClick }: Props) => {
+const OperationButton = ({ operation, onClick, selected }: Props) => {
   return (
-    <StyledOperationButton onClick={() => onClick()}>
+    <StyledOperationButton
+      onClick={() => onClick()}
+      selected={selected}
+      operation={operation}
+    >
       {operation}
     </StyledOperationButton>
   );

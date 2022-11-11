@@ -4,12 +4,14 @@ import Display from "./components/Display";
 import ButtonContainer from "./components/ButtonContainer";
 import Button from "./components/Button";
 import OperationButton from "./components/OperationButton";
+import "./App.css";
 
 function App() {
   const [currentValue, setCurrentValue] = useState("0");
   const [operation, setOperation] = useState("");
   const [prevValue, setPrevValue] = useState("0");
   const [result, setResult] = useState("");
+  const [selected, setSelected] = useState("");
 
   const setValue = (value: string) => {
     if (value === "0" && currentValue === "0") return;
@@ -18,6 +20,7 @@ function App() {
     if (currentValue !== "0") {
       setCurrentValue(`${currentValue}${value}`);
     } else setCurrentValue(`${value}`);
+    setSelected("");
   };
 
   const clear = () => {
@@ -25,6 +28,7 @@ function App() {
     setOperation("");
     setPrevValue("0");
     setResult("");
+    setSelected("");
   };
 
   const calculate = () => {
@@ -46,6 +50,9 @@ function App() {
         break;
       case "÷":
         answer = prev / current;
+        break;
+      case "^":
+        answer = prev ** current;
         break;
 
       default:
@@ -73,6 +80,7 @@ function App() {
     }
     setCurrentValue("0");
     setOperation(symbol);
+    setSelected(symbol);
   };
 
   const invertHandler = () => {
@@ -89,42 +97,59 @@ function App() {
   };
 
   return (
-    <Container>
-      <Display value={result && currentValue === "0" ? result : currentValue} />
-      <ButtonContainer>
-        <OperationButton onClick={() => clear()} operation={"C"} />
-        <OperationButton onClick={() => invertHandler()} operation={"+/-"} />
-        <OperationButton onClick={() => percentHandler()} operation={"%"} />
-        <OperationButton
-          onClick={() => operationHandler("÷")}
-          operation={"÷"}
+    <div className="center">
+      <Container>
+        <Display
+          value={result && currentValue === "0" ? result : currentValue}
         />
-        <Button value={"7"} onClick={() => setValue("7")} />
-        <Button value={"8"} onClick={() => setValue("8")} />
-        <Button value={"9"} onClick={() => setValue("9")} />
-        <OperationButton
-          onClick={() => operationHandler("X")}
-          operation={"X"}
-        />
-        <Button value={"4"} onClick={() => setValue("4")} />
-        <Button value={"5"} onClick={() => setValue("5")} />
-        <Button value={"6"} onClick={() => setValue("6")} />
-        <OperationButton
-          onClick={() => operationHandler("+")}
-          operation={"+"}
-        />
-        <Button value={"1"} onClick={() => setValue("1")} />
-        <Button value={"2"} onClick={() => setValue("2")} />
-        <Button value={"3"} onClick={() => setValue("3")} />
-        <OperationButton
-          onClick={() => operationHandler("-")}
-          operation={"-"}
-        />
-        <Button value={"0"} onClick={() => setValue("0")} />
-        <Button value={"."} onClick={() => setValue(".")} />
-        <OperationButton onClick={() => equalsHandler()} operation={"="} />
-      </ButtonContainer>
-    </Container>
+        <ButtonContainer>
+          <OperationButton onClick={() => clear()} operation={"C"} />
+          <OperationButton onClick={() => invertHandler()} operation={"+/-"} />
+          <OperationButton
+            onClick={() => percentHandler()}
+            operation={"%"}
+            selected={selected}
+          />
+          <OperationButton
+            onClick={() => operationHandler("÷")}
+            operation={"÷"}
+            selected={selected}
+          />
+          <Button value={"7"} onClick={() => setValue("7")} />
+          <Button value={"8"} onClick={() => setValue("8")} />
+          <Button value={"9"} onClick={() => setValue("9")} />
+          <OperationButton
+            onClick={() => operationHandler("X")}
+            operation={"X"}
+            selected={selected}
+          />
+          <Button value={"4"} onClick={() => setValue("4")} />
+          <Button value={"5"} onClick={() => setValue("5")} />
+          <Button value={"6"} onClick={() => setValue("6")} />
+          <OperationButton
+            onClick={() => operationHandler("+")}
+            operation={"+"}
+            selected={selected}
+          />
+          <Button value={"1"} onClick={() => setValue("1")} />
+          <Button value={"2"} onClick={() => setValue("2")} />
+          <Button value={"3"} onClick={() => setValue("3")} />
+          <OperationButton
+            onClick={() => operationHandler("-")}
+            operation={"-"}
+            selected={selected}
+          />
+          <Button value={"0"} onClick={() => setValue("0")} />
+          <Button value={"."} onClick={() => setValue(".")} />
+          <OperationButton onClick={() => equalsHandler()} operation={"="} />
+          <OperationButton
+            onClick={() => operationHandler("^")}
+            operation={"^"}
+            selected={selected}
+          />
+        </ButtonContainer>
+      </Container>
+    </div>
   );
 }
 

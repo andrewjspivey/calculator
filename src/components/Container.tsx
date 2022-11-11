@@ -11,6 +11,8 @@ const StyledContainer = styled.div`
   background-color: grey;
   width: 400px;
   height: 600px;
+  border-radius: 10px;
+  padding: 10px;
 `;
 
 const Container = ({ children }: Props) => {

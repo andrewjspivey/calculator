@@ -9,6 +9,7 @@ interface Props {
 const StyledButton = styled.button`
   background-color: darkgray;
   color: white;
+  font-size: 1.5em;
   font-weight: bold;
   cursor: pointer;
   border-radius: 10px;

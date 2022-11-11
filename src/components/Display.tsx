@@ -6,7 +6,7 @@ type Props = {
 };
 
 const StyledDisplay = styled.div`
-  height: 10%;
+  height: 12%;
   width: 100%;
   margin-bottom: 10px;
   padding: 0 10px;
