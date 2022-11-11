@@ -1,13 +1,13 @@
 import React, { MouseEventHandler } from "react";
 import styled from "styled-components";
 
-type Props = {
-  value: string | number;
+interface Props {
+  value: string;
   onClick: MouseEventHandler<HTMLButtonElement>;
-};
+}
 
 const StyledButton = styled.button`
-  background-color: orange;
+  background-color: darkgray;
   color: white;
   font-weight: bold;
   cursor: pointer;

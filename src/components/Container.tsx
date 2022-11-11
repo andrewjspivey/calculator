@@ -9,8 +9,8 @@ const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
   background-color: grey;
-  width: 600px;
-  height: 800px;
+  width: 400px;
+  height: 600px;
 `;
 
 const Container = ({ children }: Props) => {
