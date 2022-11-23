@@ -103,10 +103,10 @@ function App() {
           value={result && currentValue === "0" ? result : currentValue}
         />
         <ButtonContainer>
-          <OperationButton onClick={() => clear()} operation={"C"} />
-          <OperationButton onClick={() => invertHandler()} operation={"+/-"} />
+          <OperationButton onClick={clear} operation={"C"} />
+          <OperationButton onClick={invertHandler} operation={"+/-"} />
           <OperationButton
-            onClick={() => percentHandler()}
+            onClick={percentHandler}
             operation={"%"}
             selected={selected}
           />
@@ -141,7 +141,7 @@ function App() {
           />
           <Button value={"0"} onClick={() => setValue("0")} />
           <Button value={"."} onClick={() => setValue(".")} />
-          <OperationButton onClick={() => equalsHandler()} operation={"="} />
+          <OperationButton onClick={equalsHandler} operation={"="} />
           <OperationButton
             onClick={() => operationHandler("^")}
             operation={"^"}

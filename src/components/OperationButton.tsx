@@ -23,7 +23,7 @@ const StyledOperationButton = styled.button`
 const OperationButton = ({ operation, onClick, selected }: Props) => {
   return (
     <StyledOperationButton
-      onClick={() => onClick()}
+      onClick={onClick}
       selected={selected}
       operation={operation}
     >
